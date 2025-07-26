@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.circre.be.mapper.DesignerMapper">
+    <!-- 根据ID查询设计师 -->
+    <select id="getDesignerById" parameterType="Integer" resultType="com.circre.be.entity.Designer">
+        SELECT * FROM designer WHERE id = #{id}
+    </select>
+
+    <!-- 插入设计师基本信息 -->
+    <insert id="insertMessage" parameterType="com.circre.be.entity.Designer" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO designer (name, contact, industry, specialization, identity_tag_id, avatar, region)
+        VALUES (#{name}, #{contact}, #{industry}, #{specialization}, #{identityTagId}, #{avatar}, #{region})
+    </insert>
+
+    <!-- 插入设计师密码 -->
+    <insert id="insertPassword" parameterType="com.circre.be.entity.DesignerPassword">
+        INSERT INTO designer_pwd (designer_id, password)
+        VALUES (#{designerId}, #{password})
+    </insert>
+
+    <!-- 根据邮箱查询设计师 -->
+    <select id="selectByEmail" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM designer WHERE contact = #{email}
+    </select>
+</mapper>
+

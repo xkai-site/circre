@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.circre.be.mapper.SupplierMapper">
+    <!-- 单个供应商查询 -->
+    <select id="getSupplierById" parameterType="Integer" resultType="com.circre.be.entity.Supplier">
+        SELECT * FROM supplier WHERE id = #{id}
+    </select>
+
+    <!-- 批量供应商查询 -->
+    <select id="getSuppliersByIds" parameterType="java.util.List" resultType="com.circre.be.entity.Supplier">
+        SELECT * FROM supplier
+        WHERE id IN
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+</mapper>

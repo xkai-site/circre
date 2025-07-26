@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: be
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/circre_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 20041030Xu.
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.circre.be.entity  # 修正为实际实体类所在包
+  configuration:
+    map-underscore-to-camel-case: true  # 保持数据库下划线转Java驼峰命名
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 开发阶段保留SQL日志
+
+#文件本地存储地址[TODO:部署前需要明确修改方案，因为Linux系统路径表示不一致]
+file:
+  upload:
+    address: ${user.dir}/file_address
+
+langchain4j:
+  community:
+    dashscope:
+      chat-model:
+        model-name: qwen-max
+        api-key: sk-a5f1ffa9d513447cb48b6f3986d5ab12
+        enable-search: true
+        temperature: 0.7
+        max-tokens: 1500
+      embedding-model:
+        model-name: text-embedding-v4
+        api-key: sk-a5f1ffa9d513447cb48b6f3986d5ab12

@@ -1,0 +1,59 @@
+# 通用开发环境
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+*.swp
+*~
+
+# 后端相关 (Java/Maven)
+target/
+.mvn/
+mvnw
+mvnw.cmd
+.mvn/wrapper/maven-wrapper.jar
+*.log
+logs/
+bin/
+
+# 前端相关
+node_modules/
+dist/
+build/
+.npm/
+.yarn/
+*.log
+*.pid
+*.seed
+*.pid.lock
+.cache/
+.parcel-cache/
+.next/
+out/
+.nuxt/
+.serverless/
+.fusebox/
+.vuepress/dist/
+
+# IDE配置
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.classpath
+.project
+.settings/
+
+# 配置文件 (保留必要的yml)
+*.properties
+*.yml
+*.yaml
+!application.yml
+!application-*.yml
+
+# 数据库/上传文件
+*.db
+*.sqlite
+image/
+upload/

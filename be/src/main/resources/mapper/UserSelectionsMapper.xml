@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.circre.be.mapper.UserSelectionsMapper">
+
+    <select id="getSelectionsBySessionId" resultType="boolean">
+        SELECT COUNT(*) > 0
+        FROM user_selections
+        WHERE session_id = #{sessionId}
+    </select>
+
+    <insert id="insertSelections" parameterType="com.circre.be.entity.UserSelections"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user_selections (
+            user_id,
+            session_id,
+            selected_ids,
+            created_at
+        ) VALUES (
+            #{userId},
+            #{sessionId},
+            #{selectedIds, typeHandler=com.circre.be.common.utils.JsonListTypeHandler},
+            #{createdAt}
+        )
+    </insert>
+
+    <update id="updateSelections" parameterType="com.circre.be.entity.UserSelections">
+        UPDATE user_selections
+        SET
+            user_id = #{userId},
+            selected_ids = #{selectedIds, typeHandler=com.circre.be.common.utils.JsonListTypeHandler},
+            created_at = #{createdAt}
+        WHERE session_id = #{sessionId}
+    </update>
+
+</mapper>
